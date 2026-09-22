@@ -1,19 +1,12 @@
-from sqlalchemy import (
-    Column,
-    Integer,
-    Float,
-    String,
-    ForeignKey,
-    DateTime
-)
+from sqlalchemy import Column, Integer, ForeignKey, String, DateTime
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 
 from app.database.database import Base
 
 
-class RottenCropRequest(Base):
-    __tablename__ = "rotten_crop_requests"
+class Order(Base):
+    __tablename__ = "orders"
 
     id = Column(Integer, primary_key=True, index=True)
 
@@ -23,15 +16,22 @@ class RottenCropRequest(Base):
         nullable=False
     )
 
-    farmer_id = Column(
+    buyer_id = Column(
         Integer,
         ForeignKey("users.id"),
         nullable=False
     )
 
-    quantity = Column(Float, nullable=False)
+    transporter_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=True
+    )
 
-    location = Column(String, nullable=False)
+    quantity = Column(
+        Integer,
+        nullable=False
+    )
 
     status = Column(
         String,
@@ -45,7 +45,12 @@ class RottenCropRequest(Base):
 
     product = relationship("Product")
 
-    farmer = relationship(
+    buyer = relationship(
         "User",
-        foreign_keys=[farmer_id]
+        foreign_keys=[buyer_id]
+    )
+
+    transporter = relationship(
+        "User",
+        foreign_keys=[transporter_id]
     )

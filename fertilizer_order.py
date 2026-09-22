@@ -12,14 +12,14 @@ from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 
-class RottenCropRequest(Base):
-    __tablename__ = "rotten_crop_requests"
+class FertilizerOrder(Base):
+    __tablename__ = "fertilizer_orders"
 
     id = Column(Integer, primary_key=True, index=True)
 
-    product_id = Column(
+    fertilizer_id = Column(
         Integer,
-        ForeignKey("products.id"),
+        ForeignKey("fertilizer_products.id"),
         nullable=False
     )
 
@@ -31,8 +31,6 @@ class RottenCropRequest(Base):
 
     quantity = Column(Float, nullable=False)
 
-    location = Column(String, nullable=False)
-
     status = Column(
         String,
         default="Pending"
@@ -43,7 +41,7 @@ class RottenCropRequest(Base):
         server_default=func.now()
     )
 
-    product = relationship("Product")
+    fertilizer = relationship("FertilizerProduct")
 
     farmer = relationship(
         "User",
