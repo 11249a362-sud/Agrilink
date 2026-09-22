@@ -1,0 +1,12 @@
+crop,location,month,quantity,price
+Tomato,Coimbatore,1,100,24
+Tomato,Coimbatore,6,500,34
+Tomato,Coimbatore,7,500,37
+Tomato,Coimbatore,12,1000,29
+Tomato,Salem,6,500,32
+Tomato,Salem,7,500,35
+Rice,Coimbatore,1,100,18
+Rice,Coimbatore,6,500,24
+Rice,Salem,6,500,22
+Wheat,Coimbatore,6,500,48
+Wheat,Salem,6,500,46

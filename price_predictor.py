@@ -1,10 +1,7 @@
-# app/services/price_predictor.py
-
 def predict_price(crop: str, location: str, quantity: float, month: int):
     crop = crop.lower()
     location = location.lower()
 
-    # Base prices (₹ per kg)
     base_prices = {
         "tomato": 30,
         "onion": 25,
@@ -17,21 +14,18 @@ def predict_price(crop: str, location: str, quantity: float, month: int):
 
     base_price = base_prices.get(crop, 25)
 
-    # Seasonal adjustment
     seasonal_factor = 1.0
-    if month in [6, 7, 8]:      # Monsoon
+    if month in [6, 7, 8]:
         seasonal_factor = 1.15
-    elif month in [3, 4, 5]:    # Summer
+    elif month in [3, 4, 5]:
         seasonal_factor = 0.95
 
-    # Location adjustment
     location_factor = 1.0
     if location in ["coimbatore", "chennai", "madurai"]:
         location_factor = 1.05
 
     predicted_price = round(base_price * seasonal_factor * location_factor, 2)
 
-    # Demand level
     if predicted_price >= 35:
         demand = "High"
     elif predicted_price >= 25:
